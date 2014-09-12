@@ -1,4 +1,4 @@
-#jQuery MyTour
+#jQuery MyTour 1.0.5
 
 Mytour is a jQuery plugin that provides an easy and lightweight way to create an enjoyable virtual tour for your site. It's so fast and so easy to setup that you can do it in a few minutes without too much effort!
 
