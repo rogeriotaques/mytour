@@ -1,0 +1,98 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: url('../images/bg.png') repeat fixed top left #CCC;
+	color: #333;
+	font-family: "Calibri", "Myriad Pro", Arial, sans-serif;
+	font-size: 20px;
+	text-shadow: 1px 1px 1px white;;
+}
+
+h1 {
+	font-size: 45px;
+	margin: 20px 0;
+}
+
+h2 {
+	font-size: 30px;
+	margin: 20px 0;
+	color: yellowGreen;
+}
+
+a {
+	color: blue;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+p {
+	padding: 5px 0px;
+}
+
+p.small-font {
+	font-size: 12pt;
+	padding: 0;
+}
+
+.wrapper {
+	width: 960px;
+	margin: 20px auto;
+}
+
+.box {
+	width: 49%;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+.header,
+.footer {
+	width: 100%;
+	padding: 20px 0px;
+	margin: 0 0 20px;
+	background: rgba(0, 0, 0, 0.5);
+	text-align: center;
+	clear: both;
+	color: white;
+	font-size: 11pt;
+	text-shadow: none;
+}
+
+.header > h1 {
+	width: 500px;
+	margin: 20px auto;
+}
+
+.footer {
+	margin: 20px 0 0;
+}
+
+.footer a {
+	color: white;
+}
+
+.footer a:hover {
+	color: yellowgreen;
+	text-decoration: none;
+}
+
+#panel {
+	font-size: 10pt;
+	color: red;
+}

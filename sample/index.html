@@ -1,0 +1,162 @@
+<!DOCTYPE html >
+
+<html lang="en">
+
+    <head>
+        <title>jQuery MyTour</title>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+        
+        <meta name="description" content="An easy way to create a website tour with jQuery" >
+        <meta name="keywords" content="website,jquery,tour,step,plugin,walk thru,take a tour,assets" >
+        
+		<link rel="stylesheet" type="text/css" href="css/sample.css" >
+		<link rel="stylesheet" type="text/css" href="../src/jquery.mytour.css" />
+		
+		<script type="text/javascript" src="js/jquery.1.7.1.js"></script>
+		<script type="text/javascript" src="../src/jquery.mytour.1.0.5.min.js"></script>
+		
+		<script type="text/javascript" >
+			$(document).ready(function(){
+				// $('#tour').mytour(); /* simplest way to start */
+
+				// full options
+				$('#tour').mytour({
+					start: 0,					// start at which step
+					
+					buttons: { 					// buttons:
+						next: 'Next',			// next step. 
+						prev: 'Prev',			// previous step.
+						start: 'Start',			// backward to the first set step.
+						finish: 'Finish',		// stop presentation.
+						menu: true				// show/ hide the dropdown menu with the steps
+					},
+					
+					autoPlay: false, 			// (true/ false) if true, start the tour automaticaly 
+					timer: 5000, 				// time elipsed before goes to the next step (if null, then don't goes)
+
+					steps: '#my-tour-steps', 	// which objects will contain the steps that will be displayed for the user.
+					stepHolder: 'li',			// which tag is used to hold the step content
+
+					onStart: function() {		// callback method, called when my-tour is started
+						$('#tour').css('display', 'inline');
+					},				
+
+					onShow: function() {		// callback method, called when my-tour is played for the 1st time
+						$('#panel').html('Running ...');
+					},
+
+					beforePlay: null,			// callback method, called always before play any step
+
+					afterPlay: null,			// callback method, called always after has played any step
+
+					onFinish: function() {		// callback method, called when my-tour is finished
+						$('#panel').html('The tour has finished.');
+					},
+					
+					debug: false				// (true/false) if set TRUE, log on console each step
+				});
+			});
+		</script>
+		
+    </head>
+    <body>
+		<div class="header">
+			<h1 class="step-4">MyTour Plugin for jQuery</h1> <br >
+			<label id="panel"></label>
+		</div>
+    
+		<div class="wrapper">
+			
+			<p class="small-font">
+				Open-source plugin under MIT license. Written by Rogério Taques
+			</p>
+			
+			<h2 >Introduction</h2>
+			
+			<div class="content">
+				<p>
+					This page is a demo of how you can easily create a website tour using jQuery. <br >
+					When you start the tour, tooltips will be displayed in each step, explaining your website.
+				</p>
+				
+				<p >
+					<a href="#" id="tour" style="display: none;" >Start it now!</a>
+				</p>
+				
+				<div class="box left">
+					<h2 class="step-1">Creating a tour</h2>
+					
+					<p>
+						To create your own tour is easy. You just need a few line of HTML and JavaScript. 
+					</p>
+				</div>
+				
+				<div class="box right">
+					<h2 class="step-2">Describe your site or system</h2>
+					
+					<p>
+						When you can explain your website or web application with a virtual tour 
+						it becomes easier and people tends to enjoy more it.
+					</p>
+				</div>
+				
+				<br class="clear" >
+				
+				<h2 class="step-3">Use the power of "autoplay" and customization</h2>
+				
+				<p>
+					You can easily surprise the visitants of your site, your users or customers with an autoplay tour when 
+					they are using your app or visiting your site for the first time! Also, you can fully customize it to 
+					integrate the tour (colors, images, etc) with theme on your site or app. 
+				</p>
+				
+			</div>
+		</div>
+		
+		<div class="footer step-5">
+			<p >&copy; 2014, Rogério Taques.</p>
+			<p >
+				Take a look at my other stuffs: {
+					<a href="http://code.google.com/p/jquery-valida">Web form validation</a> | 
+					<a href="http://awin.com.br">Awin Technologies</a> | 
+					<a href="http://stuffinbag.com">Stuff In Bag</a>
+				}
+			</p>
+		</div>
+		
+		<div style="display: none;" >
+			<ul id="my-tour-steps">
+				<li data-id=".step-4" data-position="none">
+					<h1 >Welcome to Mytour</h1>
+					<p >
+						Mytour is a simple but powerful jQuery plugin that allows you to improve the experiece 
+						visitors or users have when surfing on your sites or using your web apps.
+					</p>
+					<p >I hope you enjoy.</p>
+				</li>
+				<li data-id=".step-1" data-position="right">
+					<h1 >Step 1</h1>
+					<p >Let's see how easy is to take a tour. Here we're using auto position.</p>
+				</li>
+				<li data-id=".step-2" data-position="left">
+					<h1 >Step 2</h1>
+					<p >You might explain how it works! Here we're forcing to show the tooltip on the left.</p>
+				</li>
+				<li data-id=".step-3" data-position="top">
+					<h1 >Step 3</h1>
+					<p >How about you try to use the dropdown menu ans go thru the steps?</p>
+				</li>
+				<li data-id=".step-4" >
+					<h1 >Step 4</h1>
+					<p >You can set any sequency of tour's tooltips. Now we're showing you the page's title.</p>
+				</li>
+				<li data-id=".step-5" data-position="top">
+					<h1 >Step 5</h1>
+					<p >At least we can show you the last step and you can finish it or restart it. Make your self at home and enjoy it.</p>
+				</li>
+			</ul>
+		</div>
+
+    </body>
+</html>
