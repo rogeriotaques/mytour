@@ -1,4 +1,4 @@
-#jQuery MyTour 1.0.5
+#jQuery MyTour 1.0.6
 
 Mytour is a jQuery plugin that provides an easy and lightweight way to create an enjoyable virtual tour for your site. It's so fast and so easy to setup that you can do it in a few minutes without too much effort!
 
@@ -14,11 +14,11 @@ Since you're using MyTour plugin you can expect:
 
 ##How to use it
 
-Import "jquery.mytour.1.0.5.js" on the HEAD of your page:
+Import "jquery.mytour.1.0.6.js" on the HEAD of your page:
 
 ```
 <link rel="stylesheet" type="text/css" href="jquery.mytour.css" />
-<script type="text/javascript" src="jquery.mytour.1.0.5.min.js" ></script>
+<script type="text/javascript" src="jquery.mytour.1.0.6.min.js" ></script>
 ```
 
 Set all steps of your tour.
@@ -53,7 +53,7 @@ Then, you just need to call it:
 
 ```
 <link rel="stylesheet" type="text/css" href="jquery.mytour.css" />
-<script type="text/javascript" src="jquery.mytour.1.0.5.min.js" >
+<script type="text/javascript" src="jquery.mytour.1.0.6.min.js" >
     jQuery(document).ready(function(){
        $('#trigger').mytour();
     });
