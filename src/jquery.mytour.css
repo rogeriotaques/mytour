@@ -182,12 +182,6 @@
 .my-tour-highlight {
 	z-index: 1600;
 	position: relative;
-	background: rgba(255, 255, 255, 0.85);
 	border-radius: 5px;
-	text-shadow: #AAA 1px 1px 1px;
-	color: black;
-}
-
-.my-tour-highlight * {
-	color: black !important;
+	box-shadow: #FFF 0px 0px 20px;
 }

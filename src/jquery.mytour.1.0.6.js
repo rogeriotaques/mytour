@@ -30,6 +30,7 @@
 /**
  * CHANGELOG
  * 
+ * 1.0.6 An enhancement for the highlight of target element.
  * 1.0.5 Supports a new nub position (none)
  * 1.0.4 Enhancements ...
  * 1.0.3 Changes on box layout. Added visual effects and highlight for targets.
@@ -42,7 +43,7 @@
 
 (function($){
 	
-	var version = '1.0.5',
+	var version = '1.0.6',
 	
 		stepContainer = [],
 		stepCurrent = 0,
@@ -217,6 +218,7 @@
 			tip = $(stepContainer[stepCurrent]),
 			tipPos = null,
 			nub = null,
+			nubDim = null,
 			el = null,
 			elPos = null,
 			elPosIndex = ['bottom', 'top', 'right', 'left', 'none'],
@@ -228,6 +230,12 @@
 			overlay = $('#my-tour-overlay, #my-tour-shield');
 		
 		// remove any other highlight
+		if ( $('.my-tour-highlight').length && $('.my-tour-highlight').data('reset-background') )
+		{
+			$('.my-tour-highlight').css('background-color', 'inherit');
+			$('.my-tour-highlight').removeData('reset-background');
+		}
+		
 		$('.my-tour-highlight').removeClass('my-tour-highlight');
 		
 		// when there is a callback
@@ -263,6 +271,10 @@
 					tipPos = (tip.data('position') || 'bottom');
 					elPos  = el.offset();
 					nub    = me.find('#my-tour-tooltip-nub');
+					nubDim = { 
+						width: nub.outerWidth() > 0 ? nub.outerWidth() : ( Math.abs( nub.width() )),
+						height: nub.outerHeight() > 0 ? nub.outerHeight() : ( Math.abs( nub.height() ))
+					};
 					
 					//
 					// avoid shows the tooltip outside browser's work-area
@@ -287,23 +299,23 @@
 					else if (tipPos == 'top' || tipPos == 'bottom') 
 					{
 						mytop = ( tipPos == 'top' ? 
-							(elPos.top - me.outerHeight() - (nub.outerHeight()/2)) :
-							(elPos.top + el.outerHeight() - (nub.outerHeight()/2) + parseInt(el.css('margin-bottom'), 10))	
+							(elPos.top - me.outerHeight() - (nubDim.height / 3 * 2)) :
+							(elPos.top + el.outerHeight() + (nubDim.height / 3 * 2) + parseInt(el.css('margin-bottom'), 10))	
 						);
 						
-						if (tipPos == 'top' && (mytop - me.outerHeight()) < 0) 
+						if (tipPos == 'top' && mytop < 0) 
 						{
 							// if tooltip was placed before the top screen margin, then
 							// change tooltip position to bottom side
-							mytop  = (elPos.top + el.outerHeight() + (nub.outerHeight()/2) - parseInt(el.css('margin-bottom'), 10));
+							mytop  = (elPos.top + el.outerHeight() + (nubDim.height / 3 * 2) + parseInt(el.css('margin-bottom'), 10));
 							tipPos = 'bottom';
 							
 						} 
-						else if (tipPos == 'bottom' && mytop + me.outerHeight() > $(window).height() ) 
+						else if (tipPos == 'bottom' && mytop > $(window).height()) 
 						{
 							// if tooltip was placed before the top screen margin, then
 							// change tooltip position to bottom side
-							mytop  = ( elPos.top - me.outerHeight() - (nub.outerHeight()/2) );
+							mytop  = ( elPos.top - me.outerHeight() - (nubDim.height / 3 * 2) );
 							tipPos = 'top';
 						}
 						
@@ -312,22 +324,22 @@
 					else if(tipPos == 'left' || tipPos == 'right') 
 					{
 						myleft = ( tipPos == 'left' ? 
-							elPos.left - (nub.outerWidth()/2) - me.outerWidth() :
-							elPos.left + el.outerWidth() + (nub.outerWidth()/2)
+							elPos.left - (nubDim.width / 3 * 2) - me.outerWidth() :
+							elPos.left + el.outerWidth() + (nubDim.width / 3 * 2)
 						);
 						
 						if (tipPos == 'left' && myleft < 0) 
 						{
 							// if tooltip was placed before the left screen margin, then
 							// change tooltip position to right side
-							myleft = elPos.left + el.outerWidth() + nub.outerWidth();
+							myleft = elPos.left + el.outerWidth() + (nubDim.width / 3 * 2);
 							tipPos = 'right';
 						} 
-						else if (tipPos == 'right' && myleft + me.outerWidth() > $(window).width()) 
+						else if (tipPos == 'right' && (myleft + me.outerWidth()) > $(window).width()) 
 						{
 							// if tooltip was placed after the right screen margin, then
 							// change tooltip position to left side
-							myleft = elPos.left - nub.outerWidth() - me.outerWidth();
+							myleft = elPos.left - (nubDim.width / 3 * 2) - me.outerWidth();
 							tipPos = 'left';
 						} 
 						
@@ -386,7 +398,7 @@
 								left: myleft
 							}).animate({'top': '+=10'}, 150);
 							
-							//nub.css('display', 'none');
+							nub.css('display', 'none');
 													
 							break;
 							
@@ -397,6 +409,7 @@
 								top: mytop + 10,
 								left: elPos.left + (el.outerWidth()/2) - (me.outerWidth()/2)
 							}).animate({'top': '-=10'}, 150);
+						
 						
 							nub.css({ left: Math.ceil((me.outerWidth()/2) - (nub.outerWidth()/2)) });
 						
@@ -411,11 +424,11 @@
 					if (tipPos == 'top' || tipPos == 'bottom') 
 					{
 						var diff = Math.ceil( me.offset().left + me.outerWidth() - $(window).width() );
-						
+
 						if (diff > 0) 
 						{
 							me.css({left: me.offset().left - diff});
-							nub.css({left: diff + parseInt(nub.css('left'), 10)});
+							nub.css({left: diff + parseInt(nub.css('left'), 10) + 20});
 						}
 					}
 					
@@ -430,7 +443,13 @@
 					
 					if (tipPos != 'none')
 					{
-						el.addClass('my-tour-highlight');	
+						el.addClass('my-tour-highlight');
+
+						if ( el.css('background-color') == 'rgba(0, 0, 0, 0)' || el.css('background-color') == 'transparent' )
+						{
+							el.data('reset-background', true);
+							el.css('background-color', 'rgba(255, 255, 255, 1)');
+						}
 					}
 					
 					me.fadeIn('fast');
