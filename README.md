@@ -5,6 +5,8 @@ Mytour is a jQuery plugin that provides an easy and lightweight way to create an
 Have you ever though into create a virtual tour for visitants of your website? 
 With a tour you can guide people who access your site across the main information or funcionalities! Isn't cool?
 
+[Live Demo](http://awin.com.br/mytour/)
+
 ##Details
 
 Since you're using MyTour plugin you can expect:
