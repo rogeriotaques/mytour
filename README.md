@@ -81,3 +81,5 @@ If you have any suggestion, critics or just wanna say hello, feel free to mail m
 I'll certainly answer as soon as I can.
 
 Happy coding! =)
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/rogeriotaques/mytour/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

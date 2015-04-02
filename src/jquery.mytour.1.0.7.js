@@ -30,6 +30,7 @@
 /**
  * CHANGELOG
  * 
+ * 1.0.7 Start using strict mode.
  * 1.0.6 An enhancement for the highlight of target element.
  * 1.0.5 Supports a new nub position (none)
  * 1.0.4 Enhancements ...
@@ -43,7 +44,9 @@
 
 (function($){
 	
-	var version = '1.0.6',
+    "use strict";
+    
+	var version = '1.0.7',
 	
 		stepContainer = [],
 		stepCurrent = 0,
@@ -97,12 +100,13 @@
 						s = $(o.steps+' > '+o.stepHolder),
 						tip = $('<div />', { id: "my-tour-tooltip", class: "my-tour-tooltip"}),
 						overlay = $('<div />', { id: "my-tour-overlay", class: "my-tour-overlay"}),
-						shield  = $('<div />', { id: "my-tour-shield", class: "my-tour-shield"});
+						shield  = $('<div />', { id: "my-tour-shield", class: "my-tour-shield"}),
+                        i = 0;
 					
 					s.hide(); // hide the steps holder
 					
 					// foreach step found, remove it from the page and store it on the container
-					for( var i=0; i<s.length; i++ ) 
+					for( i in s ) 
 					{
 						// only store valid steps
 						if ($($(s[i]).data('id')).length) 
@@ -563,7 +567,7 @@
 			var i = 0,
 				j = i+1;
 			
-			for(i=0; i<stepContainer.length; i++)
+			for(i in stepContainer)
 			{
 				if ($(stepContainer[i].data('id')).length)
 				{
