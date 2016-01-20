@@ -1,5 +1,9 @@
 #jQuery MyTour 1.0.6
 
+> **IMPORTANT** :
+> This script is no longer being maintained. 
+> Have a look at: [HopScotch](https://github.com/rogeriotaques/hopscotch)
+
 Mytour is a jQuery plugin that provides an easy and lightweight way to create an enjoyable virtual tour for your site. It's so fast and so easy to setup that you can do it in a few minutes without too much effort!
 
 Have you ever though into create a virtual tour for visitants of your website? 
